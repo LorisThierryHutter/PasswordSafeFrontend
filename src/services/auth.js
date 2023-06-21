@@ -1,6 +1,6 @@
 import { postRequest } from './api';
 
-const API_BASE_URL = 'http://example.com/api'; // Replace with your API base URL
+const API_BASE_URL = 'https://passwordSafe.loris-hutter.ch/api'; // Replace with your API base URL
 
 // Example function for signing in
 export const signIn = async (email, password) => {
