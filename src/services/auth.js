@@ -1,6 +1,18 @@
 import { postRequest } from './api';
+import axios from 'axios';
 
-const API_BASE_URL = 'https://passwordSafe.loris-hutter.ch/api'; // Replace with your API base URL
+const SIGNUP_API = 'https://localhost:9090/signup'; // Replace with your API base URL
+
+
+class auth{
+  getSignUp(){
+    return axios.get(SIGNUP_API);
+  }
+
+
+}
+
+export default new auth();
 
 // Example function for signing in
 export const signIn = async (email, password) => {

@@ -1,6 +1,17 @@
 import { postRequest, getRequest } from './api';
+import axios from "axios";
 
-const API_BASE_URL = 'http://example.com/api'; // Replace with your API base URL
+const GET_ENTRIES = 'https://localhost:9090/entries/all'; // Replace with your API base URL
+
+class entry{
+  getEntries(){
+    return axios.get(GET_ENTRIES);
+  }
+
+}
+
+export default new entry();
+
 
 // Example function for creating a new entry
 export const createEntry = async (websiteUrl, username, password) => {
@@ -10,13 +21,13 @@ export const createEntry = async (websiteUrl, username, password) => {
     password,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/entries`, data);
+  const response = await postRequest(`${GET_ENTRIES}`, data);
   // Handle response, display success message, etc.
 };
 
 // Example function for retrieving entry list
 export const getEntryList = async () => {
-  const response = await getRequest(`${API_BASE_URL}/entries`);
+  const response = await getRequest(`${GET_ENTRIES}`);
   // Handle response, retrieve entry list data, etc.
 };
 
@@ -28,12 +39,12 @@ export const updateEntry = async (entryId, websiteUrl, username, password) => {
     password,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/entries/${entryId}`, data);
+  const response = await postRequest(`${GET_ENTRIES}/${entryId}`, data);
   // Handle response, display success message, etc.
 };
 
 // Example function for deleting an entry
 export const deleteEntry = async (entryId) => {
-  const response = await postRequest(`${API_BASE_URL}/entries/${entryId}/delete`);
+  const response = await postRequest(`${GET_ENTRIES}/${entryId}/delete`);
   // Handle response, display success message, etc.
 };
