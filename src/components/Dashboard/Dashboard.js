@@ -1,9 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
 import EntryList from './EntryList';
-import { getEntryList } from '../../services/entry';
+import auth from "../../services/auth";
 
-const Dashboard = () => {
+
+class Dashboard extends React.Component{
+
+  componentDidMount(){
+    auth.getDashboard().then((response) => {
+      this.setState({entries: response.data})
+    });
+  }
+
+  render() {
+    return (
+        <div>
+          <Sidebar
+              handleLogout={handleLogout}
+              handleCreateEntry={handleCreateEntry}
+              handleProfileSettings={handleProfileSettings}
+          />
+          <EntryList entries={entries} />
+        </div>
+    );
+  }
+}
+
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -30,17 +52,4 @@ const Dashboard = () => {
   const handleProfileSettings = () => {
     // Implement profile settings navigation
   };
-
-  return (
-    <div>
-      <Sidebar
-        handleLogout={handleLogout}
-        handleCreateEntry={handleCreateEntry}
-        handleProfileSettings={handleProfileSettings}
-      />
-      <EntryList entries={entries} />
-    </div>
-  );
-};
-
 export default Dashboard;

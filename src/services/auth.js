@@ -2,11 +2,22 @@ import { postRequest } from './api';
 import axios from 'axios';
 
 const SIGNUP_API = 'https://localhost:9090/signup'; // Replace with your API base URL
+const DASHBOARD_API = 'https://localhost:9090/dashboard'; // Replace with your API base URL
+const LOGIN_API = 'https://localhost:9090/'; // Replace with your API base URL
+const PWD_UPDATE = 'http://localhost:9090/{id}/updateUser';
 
 
 class auth{
   getSignUp(){
     return axios.get(SIGNUP_API);
+  }
+
+  getDashboard(){
+    return axios.get(DASHBOARD_API);
+  }
+
+  getSignIn(){
+    return axios.get(LOGIN_API);
   }
 
 
@@ -21,7 +32,7 @@ export const signIn = async (email, password) => {
     password,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/auth/signin`, data);
+  const response = await postRequest(`${LOGIN_API}`, data);
   // Handle response, store token, etc.
 };
 
@@ -35,7 +46,7 @@ export const signUp = async (firstName, lastName, email, password, phoneNumber) 
     phoneNumber,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/auth/signup`, data);
+  const response = await postRequest(`${SIGNUP_API}/auth/signup`, data);
   // Handle response, display success message, etc.
 };
 
@@ -51,6 +62,6 @@ export const resetPassword = async (email) => {
     email,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/auth/reset-password`, data);
+  const response = await postRequest(`${PWD_UPDATE}`, data);
   // Handle response, display success message, etc.
 };

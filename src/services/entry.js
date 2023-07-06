@@ -2,10 +2,18 @@ import { postRequest, getRequest } from './api';
 import axios from "axios";
 
 const GET_ENTRIES = 'https://localhost:9090/entries/all'; // Replace with your API base URL
+const UPDATE_ENTRIES = 'https://localhost:9090/{id}/update';
+const DELETE_ENTRIES = 'https://localhost:9090/{id}/delete';
 
 class entry{
   getEntries(){
     return axios.get(GET_ENTRIES);
+  }
+  updateEntries(){
+    return axios.put(UPDATE_ENTRIES);
+  }
+  deleteEntries(){
+    return axios.delete(DELETE_ENTRIES);
   }
 
 }

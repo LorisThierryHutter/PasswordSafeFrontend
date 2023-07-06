@@ -11,6 +11,16 @@ class Entry extends React.Component{
             this.setState({entries: response.data})
         });
     }
+    componentDidMount(){
+        entry.updateEntries().then((response) => {
+            this.setState({entries: response.data})
+        });
+    }
+    componentDidMount(){
+        entry.deleteEntries().then((response) => {
+            this.setState({entries: response.data})
+        });
+    }
     render() {
         return (
             <div>
