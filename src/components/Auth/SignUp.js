@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { signUp } from '../../services/auth';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const history 
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const SignUp = () => {
     try {
       await signUp(firstName, lastName, email, password, phoneNumber);
       // Display success message or perform necessary actions upon successful sign-up
-        history.pushState('/dashboard');
+      navigate('/dashboard');
     } catch (error) {
       // Handle sign-up error
     }

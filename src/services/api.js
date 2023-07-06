@@ -38,3 +38,25 @@ export const postRequest = async (url, data) => {
     }
   };
   
+  export const authenticatedPostRequest = async (url, data, token) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+  
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      throw new Error('Request failed');
+    }
+  };
+  

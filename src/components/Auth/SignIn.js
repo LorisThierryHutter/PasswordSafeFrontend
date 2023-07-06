@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { signIn } from '../../services/auth';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
-  const history = useHistory;
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,7 +12,7 @@ const SignIn = () => {
     try {
       await signIn(email, password);
       // Redirect to dashboard or perform necessary actions upon successful sign-in
-        history.push('/dashboard');
+      navigate('/dashboard');
     } catch (error) {
       // Handle sign-in error
     }
