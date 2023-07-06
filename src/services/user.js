@@ -1,6 +1,21 @@
 import { postRequest } from './api';
+import axios from "axios";
 
-const API_BASE_URL = 'http://example.com/api'; // Replace with your API base URL
+const USER_API = 'http://localhost:9090/user/{id}'; // Replace with your API base URL
+const USER_UPDATE = 'http://localhost:9090/{id}/updateUser';
+
+class user{
+  getUsers(){
+    return axios.get(USER_API);
+  }
+
+  updateUser(){
+    return axios.get(USER_UPDATE)
+  }
+
+}
+export default new user();
+
 
 // Example function for updating profile
 export const updateProfile = async (firstName, lastName) => {
@@ -9,7 +24,7 @@ export const updateProfile = async (firstName, lastName) => {
     lastName,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/user/profile`, data);
+  const response = await postRequest(`${USER_UPDATE}`, data);
   // Handle response, display success message, etc.
 };
 
@@ -19,12 +34,12 @@ export const updatePassword = async (password) => {
     password,
   };
 
-  const response = await postRequest(`${API_BASE_URL}/user/password`, data);
+  const response = await postRequest(`${USER_UPDATE}`, data);
   // Handle response, display success message, etc.
 };
 
 // Example function for toggling two-factor authentication
 export const toggleTwoFactorAuth = async () => {
-  const response = await postRequest(`${API_BASE_URL}/user/toggle-2fa`);
+  const response = await postRequest(`${USER_API}/user/toggle-2fa`);
   // Handle response, display success message, etc.
 };
